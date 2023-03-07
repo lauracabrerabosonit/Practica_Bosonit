@@ -1,0 +1,81 @@
+USE AdventureWorksLT2008R2
+
+5.1.
+
+IF EXISTS (SELECT * FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[demoProduct]') AND type in (N'U'))
+DROP TABLE [dbo].[demoProduct] 
+
+CREATE TABLE [dbo].[demoProduct]( [ProductID] [INT] NOT NULL PRIMARY KEY,
+[Name] [dbo].[Name] NOT NULL, 
+[Color] [NVARCHAR](15) NULL,
+[StandardCost] [MONEY] NOT NULL,
+[ListPrice] [MONEY] NOT NULL,
+[Size] [NVARCHAR](5) NULL,
+[Weight] [DECIMAL](8, 2) NULL,
+);
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[demoSalesOrderHeader]') AND type in (N'U'))
+DROP TABLE 
+[dbo].[demoSalesOrderHeader] 
+
+CREATE TABLE [dbo].[demoSalesOrderHeader]( 
+[SalesOrderID] [INT] NOT NULL PRIMARY 
+KEY, [SalesID] [INT] NOT NULL IDENTITY, 
+[OrderDate] [DATETIME] NOT NULL, 
+[CustomerID] [INT] NOT NULL,
+[SubTotal] [MONEY] NOT NULL,
+[TaxAmt] [MONEY] NOT NULL, 
+[Freight] [MONEY] NOT NULL,[DateEntered] [DATETIME],
+[TotalDue] AS (ISNULL(([SubTotal]+[TaxAmt])+[Freight],(0))), 
+[RV] ROWVERSION NOT NULL);
+
+ALTER TABLE [dbo].[demoSalesOrderHeader] ADD CONSTRAINT 
+[DF_demoSalesOrderHeader_DateEntered]
+DEFAULT (GETDATE()) FOR [DateEntered];IF EXISTS (SELECT * FROM sys.objects
+	WHERE object_id = 
+	OBJECT_ID(N'[dbo].[demoAddress]') AND type in 
+	(N'U'))
+DROP TABLE 
+[dbo].[demoAddress] 
+
+CREATE TABLE [dbo].[demoAddress](
+	[AddressID] [INT] NOT NULL IDENTITY PRIMARY 
+	KEY, [AddressLine1] [NVARCHAR](60) NOT NULL, 
+	[AddressLine2] [NVARCHAR](60) NULL,
+	[City] [NVARCHAR](30) NOT NULL,
+	[StateProvince] [dbo].[Name] NOT 
+	NULL, [CountryRegion] [dbo].[Name] 
+	NOT NULL, [PostalCode] [NVARCHAR](15) 
+	NOT NULL
+);
+
+5.1.
+SELECT DISTINCT TOP 5  Name, Color, StandardCost, ListPrice, Size, Weight FROM SalesLT.Product;
+
+INSERT INTO dbo.demoProduct (Name, Color, StandardCost, ListPrice, Size, Weight) VALUES
+('HL Road Frame - Black, 58','Black', '1059,31','1431,50','58','1016.04');
+
+INSERT INTO dbo.demoProduct (Name, Color, StandardCost, ListPrice, Size, Weight) VALUES
+('HL Road Frame - Red, 58','Red', '1059,31','1431,50','58','1016.04');
+
+INSERT INTO dbo.demoProduct (Name, Color, StandardCost, ListPrice, Size, Weight) VALUES
+('Sport-100 Helmet, Red','Red', '13,0863','34,99','NULL','NULL');
+
+INSERT INTO dbo.demoProduct (Name, Color, StandardCost, ListPrice, Size, Weight) VALUES
+('Sport-100 Helmet, Black','Black', '13,0863','34,99','NULL','NULL');
+
+INSERT INTO dbo.demoProduct (Name, Color, StandardCost, ListPrice, Size, Weight) VALUES
+('Mountain Bike Socks, M','White', '3,3963','9,50','M','NULL');
+
+
+5.2.
+INSERT INTO dbo.demoProduct(Name, Color, StandardCost, ListPrice, Size, Weight)
+SELECT TOP 5 Name, Color, StandardCost, ListPrice, Size, Weight FROM SalesLT.Product;
+
+
+5.3.
+INSERT INTO dbo.demoSalesOrderHeader (SalesOrderID, OrderDate, CustomerID, SubTotal, TaxAmt, Freight, TotalDue)
+SELECT SalesOrderID, OrderDate, CustomerID, SubTotal, TaxAmt, Freight, TotalDue FROM SalesLT.SalesOrderHeader;
+
+5.4.

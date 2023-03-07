@@ -1,0 +1,15 @@
+USE AdventureWorks2008R2
+
+2.1. 
+SELECT  SpecialOfferID, Description, MinQty -MaxQty AS Diferencia  FROM Sales.SpecialOffer;
+
+
+
+2.2.
+SELECT  SpecialOfferID, Description, MinQty * DiscountPct AS Producto  FROM Sales.SpecialOffer;
+
+
+2.3.
+SELECT  SpecialOfferID, Description, (COALESCE(MaxQty,10) * DiscountPct) AS Producto FROM Sales.SpecialOffer;
+
+2.4. La division es el resultado de dividir dos numeros, mientras que el modulo devuelve el resto entero de una division.

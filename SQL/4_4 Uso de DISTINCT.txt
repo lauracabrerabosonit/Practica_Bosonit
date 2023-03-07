@@ -1,0 +1,11 @@
+USE AdventureWorks2008R2
+
+4.1.
+SELECT DISTINCT ProductID, COUNT(SalesOrderID)
+FROM Sales.SalesOrderDetail
+GROUP BY ProductID;
+
+4.2.
+SELECT DISTINCT CustomerID, COUNT(TerritoryID)
+FROM Sales.SalesOrderHeader
+GROUP BY CustomerID;

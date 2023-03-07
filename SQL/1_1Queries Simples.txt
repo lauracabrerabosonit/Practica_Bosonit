@@ -1,0 +1,19 @@
+1. Queries Simples 
+
+USE AdventureWorksLT2008R2
+
+1.1:
+
+SELECT CustomerID, LastName, FirstName, CompanyName FROM SalesLT.Customer;
+
+1.2:
+
+SELECT Name, ProductID, Color FROM SalesLT.product;
+
+1.3:
+
+SELECT CustomerID, SalesOrderID FROM SalesLT.SalesOrderHeader;
+
+1.4: 1- Porque si escribimos el asterisco nos darían todas las columnas, 
+         y el ejercicio nos pide columnas concretas(y noo todas).
+      2- Porque sino la consulta noo sería clara y reall, nos proporcionarían demasiados datos.

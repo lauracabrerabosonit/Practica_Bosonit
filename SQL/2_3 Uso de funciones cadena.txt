@@ -1,0 +1,14 @@
+USE AdventureWorks2008R2
+
+2.1. 
+SELECT LEFT(AddressLine1,10) FROM Person.Address;
+
+2.2.
+
+SELECT SUBSTRING([AddressLine1], 10, 6) AS 'AdressLine1' FROM Person.Address;
+
+2.3.
+
+SELECT UPPER(FirstName) AS FirstName, UPPER(LastName) AS LastName  FROM Person.Person;
+
+

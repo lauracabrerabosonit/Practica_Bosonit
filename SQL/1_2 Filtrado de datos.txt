@@ -1,0 +1,48 @@
+USE AdventureWorks2008R2
+
+1.1:
+
+SELECT BusinessEntityID, LoginID, JobTitle FROM HumanResources.Employee
+WHERE JobTitle = 'Research and Development Engineer';
+
+1.2:
+
+SELECT FirstName, LastName, MiddleName, BusinessEntityID FROM Person.Person
+WHERE MiddleName = 'J';
+
+
+
+1.3:
+
+
+SELECT * FROM Production.ProductCostHistory 
+WHERE ModifiedDate = cast('2007-06-17' as date);
+
+
+1.4:
+
+SELECT BusinessEntityID, LoginID, JobTitle FROM HumanResources.Employee
+WHERE JobTitle <> 'Research and Development Engineer';
+
+
+1.5:
+
+
+SELECT BusinessEntityID, FirstName, ModifiedDate FROM Person.Person
+WHERE  ModifiedDate > '29-12-2000';
+
+1.6:
+SELECT BusinessEntityID, FirstName, ModifiedDate FROM Person.Person
+WHERE  ModifiedDate <>'29-12-2000';
+
+2.7:
+SELECT BusinessEntityID, FirstName, ModifiedDate FROM Person.Person
+WHERE  ModifiedDate BETWEEN '01-12-2000' AND '31-12-2000';
+
+2.8:
+SELECT BusinessEntityID, FirstName, ModifiedDate FROM Person.Person
+WHERE  ModifiedDate BETWEEN '01-12-2000' AND '31-12-2000';
+
+2.9:La claúsula es de vital importancia ya que nos permite filtrar datos concretos de la tabla que necesitemos.
+
+

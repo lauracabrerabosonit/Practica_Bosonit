@@ -1,0 +1,24 @@
+USE AdventureWorks2008R2
+
+1.1. 
+
+SELECT ProductID, ProductNumber FROM Production.Product
+WHERE Name LIKE 'chain%';
+
+1.2.
+SELECT ProductID, ProductNumber FROM Production.Product
+WHERE Name LIKE '%helmet%';
+
+1.3.
+SELECT ProductID, ProductNumber FROM Production.Product
+WHERE Name NOT LIKE '%helmet%';
+
+1.4.
+
+SELECT BusinessEntityID, FirstName, MiddleName, LastName FROM Person.Person
+WHERE MiddleName ='B' OR MiddleName ='E';
+
+1.5.  La primera consulta nos ofrece de la columna Primer Nombre aquellas filas donde 
+el apellido empieza por Ja y acaba por es, con 0 o mas caracteres en medio, mientras que la segunda consulta
+nos ofrece de la columna Primer Nombre aquellas filas donde 
+el apellido empiza por Ja seguido de un solo caracter, y acaba por es.

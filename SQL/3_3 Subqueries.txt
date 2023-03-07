@@ -1,0 +1,39 @@
+USE AdventureWorks2008R2
+
+3.1.
+SELECT Production.Product.ProductID, Production.Product.Name
+	FROM Production.Product
+	WHERE ProductID IN (SELECT Sales.SalesOrderDetail.ProductID FROM Sales.SalesOrderDetail
+			WHERE Sales.SalesOrderDetail.ProductID = Production.Product.ProductID);
+
+3.2.
+SELECT Production.Product.ProductID, Production.Product.Name
+	FROM Production.Product
+	WHERE ProductID NOT IN (SELECT Sales.SalesOrderDetail.ProductID FROM Sales.SalesOrderDetail
+			WHERE Sales.SalesOrderDetail.ProductID = Production.Product.ProductID);
+
+3.3.
+
+
+IF OBJECT_ID('Production.ProductColor') IS NOT NULL BEGIN DROP TABLE Production.ProductColor;
+
+CREATE table Production.ProductColor (Color nvarchar(15) NOT NULL PRIMARY KEY)
+
+--Insert most of the existing colors INSERT INTO Production.ProductColor
+SELECT DISTINCT COLOR FROM Production.Product
+WHERE Color IS NOT NULL and Color <> 'Silver'
+--Insert some additional colors 
+INSERT INTO Production.ProductColor VALUES ('Green'),('Orange'),('Purple');
+
+
+SELECT Production.ProductColor.Color
+	FROM Production.ProductColor
+	WHERE Color NOT IN (SELECT Production.Product.Color FROM Production.Product
+			WHERE Production.Product.Color = Production.ProductColor.Color);
+		
+
+3.5.
+SELECT Person.Person.ModifiedDate FROM Person.Person
+UNION
+SELECT HumanResources.Employee.HireDate FROM HumanResources.Employee;
+

@@ -1,0 +1,27 @@
+USE AdventureWorks2008R2
+
+4.1.
+SELECT COUNT(OrderQty) AS TotalPedidos, ProductID
+FROM Sales.SalesOrderDetail
+GROUP BY ProductID
+ORDER BY COUNT(OrderQty) ASC;
+
+4.2.
+SELECT SUM(LineTotal) AS Recuento, SalesOrderID
+FROM Sales.SalesOrderDetail
+GROUP BY SalesOrderID
+ORDER BY SUM(LineTotal) ASC;
+
+4.3.
+SELECT COUNT(ProductLine) AS Recuento, ProductNumber
+FROM Production.Product
+GROUP BY ProductNumber
+ORDER BY COUNT(ProductLine) ASC;
+
+
+4.4.
+SELECT CustomerID, COUNT(DATEPART(year,OrderDate))
+FROM Sales.SalesOrderHeader
+GROUP BY CustomerID
+ORDER BY COUNT(DATEPART(year,OrderDate));
+

@@ -1,0 +1,23 @@
+USE AdventureWorks2008R2
+
+1.1. 
+
+SELECT SalesOrderID, OrderDate, DueDate FROM Sales.SalesOrderHeader
+WHERE (OrderDate BETWEEN '01-09-2001' AND '30-09-2001') AND TotalDue > cast('1.000' as money);
+
+1.2.
+SELECT SalesOrderID, OrderDate, DueDate FROM Sales.SalesOrderHeader
+WHERE (OrderDate BETWEEN '01-09-2001' AND '03-09-2001') AND TotalDue > cast('1.000' as money);
+
+SELECT SalesOrderID, OrderDate, DueDate FROM Sales.SalesOrderHeader
+WHERE (OrderDate = '01-09-2001' AND TotalDue > cast('1.000' as money)) AND (OrderDate = '02-09-2001' AND TotalDue > cast('1.000' as money)) AND (OrderDate = '03-09-2001' AND TotalDue > cast('1.000' as money));
+
+1.3.
+SELECT SalesOrderNumBer FROM Sales.SalesOrderHeader
+WHERE (TotalDue > cast('1.000' as money)) AND (SalesPersonID = '279' OR TerritoryID ='6');
+
+1.4.
+SELECT SalesOrderNumBer FROM Sales.SalesOrderHeader
+WHERE (TotalDue > cast('1.000' as money)) AND (SalesPersonID = '279' OR TerritoryID IN ('6', '4'));
+
+1.5. El operador tiene sentido utilizarlo cuando queremos especificar varios valores en una clausulawhere.

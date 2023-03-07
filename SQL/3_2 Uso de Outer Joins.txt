@@ -1,0 +1,44 @@
+USE AdventureWorks2008R2
+
+3.1.
+SELECT Production.Product.Name, Sales.SalesOrderDetail.SalesOrderID
+FROM (((Production.Product
+FULL OUTER JOIN Production.ProductProductPhoto ON Production.Product.ProductID =  Production.ProductProductPhoto.ProductID)
+FULL OUTER JOIN  Sales.SpecialOfferProduct ON Production.ProductProductPhoto.ProductID = Sales.SpecialOfferProduct.ProductID)
+FULL OUTER JOIN  Sales.SalesOrderDetail ON  Sales.SpecialOfferProduct.ProductID = Sales.SalesOrderDetail.ProductID);
+
+3.2.
+SELECT Production.Product.Name, Sales.SalesOrderDetail.SalesOrderID
+FROM (((Production.Product
+FULL OUTER JOIN Production.ProductProductPhoto ON Production.Product.ProductID =  Production.ProductProductPhoto.ProductID)
+FULL OUTER JOIN  Sales.SpecialOfferProduct ON Production.ProductProductPhoto.ProductID = Sales.SpecialOfferProduct.ProductID)
+FULL OUTER JOIN  Sales.SalesOrderDetail ON  Sales.SpecialOfferProduct.ProductID = Sales.SalesOrderDetail.ProductID)
+WHERE Sales.SalesOrderDetail.SalesOrderID IS NULL;
+
+
+3.3
+SELECT Sales.SalesOrderHeader.SalesOrderID, Sales.SalesPerson.SalesYTD, Sales.Salesperson.BusinessEntityID
+FROM Sales.SalesPerson
+FULL OUTER JOIN Sales.SalesOrderHeader ON Sales.SalesPerson.BusinessEntityID = Sales.SalesOrderHeader.SalesOrderID;
+
+
+3.4
+SELECT Sales.SalesOrderHeader.SalesOrderID, Sales.SalesPerson.SalesYTD, Sales.Salesperson.BusinessEntityID
+FROM ((Sales.SalesPerson
+FULL OUTER JOIN Sales.SalesOrderHeader ON Sales.SalesPerson.BusinessEntityID = Sales.SalesOrderHeader.SalesOrderID)
+FULL OUTER JOIN Person.Person ON Sales.SalesPerson.BusinessEntityID = Person.Person.BusinessEntityID);
+
+3.5.
+SELECT Sales.CurrencyRate.CurrencyRateID, Sales.CurrencyRate.AverageRate, Sales.SalesOrderHeader.SalesOrderID, Purchasing.ShipMethod.ShipBase
+FROM ((Sales.SalesOrderHeader
+FULL OUTER JOIN Sales.CurrencyRate ON Sales.SalesOrderHeader.CurrencyRateID = Sales.CurrencyRate.CurrencyRateDate)
+FULL OUTER JOIN Purchasing.ShipMethod ON Sales.SalesOrderHeader.ShipMethodID = Purchasing.ShipMethod.ShipMethodID);
+
+
+3.6.
+SELECT Sales.SalesPerson.BusinessEntityID, Production.Product.ProductID
+FROM ((Production.Product
+FULL OUTER JOIN Purchasing.ProductVendor ON Purchasing.ProductVendor.ProductID = Production.Product.ProductID)
+FULL OUTER JOIN Sales.SalesPerson ON Sales.SalesPerson.BusinessEntityID = Purchasing.ProductVendor.BusinessEntityID);
+
+

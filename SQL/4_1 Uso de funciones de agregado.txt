@@ -1,0 +1,16 @@
+USE AdventureWorks2008R2
+
+4.1.
+SELECT COUNT(CustomerID) AS NumeroDeClientes FROM Sales.Customer;
+
+4.2.
+SELECT SUM(OrderQty) AS TotalProductosVendidos FROM Sales.SalesOrderDetail;
+
+4.3.
+SELECT MAX(UnitPrice) AS PrecioMasCaro FROM Sales.SalesOrderDetail;
+
+4.4.
+SELECT AVG(Freight) AS ImporteMedio FROM Sales.SalesOrderHeader;
+
+4.5.
+SELECT MIN(ListPrice) AS minimo, MAX(ListPrice) as maximo, AVG(ListPrice) as promedio FROM Production.Product;

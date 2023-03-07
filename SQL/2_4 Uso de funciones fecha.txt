@@ -1,0 +1,20 @@
+USE AdventureWorks2008R2
+
+2.1. 
+SELECT SalesOrderID, OrderDate, ShipDate, DATEDIFF(DAY, OrderDate, ShipDate) FROM Sales.SalesOrderHeader;
+
+
+2.2.
+SELECT CAST (OrderDate AS Date), CAST (ShipDate AS Date)  FROM Sales.SalesOrderHeader;
+
+2.3.
+
+SELECT  SalesOrderID, OrderDate, DATEADD(MONTH, 6, OrderDate) AS OrderDate6Month  FROM Sales.SalesOrderHeader;
+
+2.4.
+
+SELECT SalesOrderID, OrderDate, DATEPART(YEAR, OrderDate) AS OrderYear , DATEPART(MONTH, OrderDate) AS OrderMonth  FROM Sales.SalesOrderHeader;
+
+2.5.
+SELECT SalesOrderID, OrderDate, DATEPART(YEAR, OrderDate) AS Orderyear, DATENAME(MONTH, OrderDate) AS OrderMonth  FROM Sales.SalesOrderHeader;
+

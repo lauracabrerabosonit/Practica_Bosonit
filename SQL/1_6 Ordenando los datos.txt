@@ -1,0 +1,12 @@
+USE AdventureWorks2008R2
+
+1.1. 
+
+
+
+SELECT BusinessEntityID, NameStyle FROM Person.Person
+ORDER BY LastName, FirstName, MiddleName;
+
+1.2.
+SELECT BusinessEntityID, NameStyle FROM Person.Person
+ORDER BY MiddleName, FirstName, LastName;

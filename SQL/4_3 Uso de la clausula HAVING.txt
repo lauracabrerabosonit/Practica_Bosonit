@@ -1,0 +1,14 @@
+USE AdventureWorks2008R2
+
+4.1.
+SELECT COUNT(rowguid), SalesOrderID
+FROM Sales.SalesOrderDetail
+GROUP BY SalesOrderID;
+
+
+4.2.
+SELECT SUM(LineTotal)
+FROM Sales.SalesOrderDetail
+GROUP BY SalesOrderID
+HAVING SUM(LineTotal) > 1000;
+

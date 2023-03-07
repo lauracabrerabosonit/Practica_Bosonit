@@ -1,0 +1,46 @@
+USE AdventureWorks2008R2
+
+3.1.
+SELECT HumanResources.Employee.JobTitle, HumanResources.Employee.BirthDate, Person.Person.FirstName, Person.Person.LastName
+FROM HumanResources.Employee
+INNER JOIN Person.Person ON HumanResources.Employee.BusinessEntityID = Person.Person.BusinessEntityID;
+
+3.2.
+SELECT Sales.Customer.CustomerID, Sales.Customer.StoreID, Sales.Customer.TerritoryID, Person.Person.FirstName, Person.Person.MiddleName, Person.Person.LastName
+FROM Sales.Customer
+INNER JOIN Person.Person ON Sales.Customer.PersonID = Person.Person.BusinessEntityID;
+
+3.3.
+SELECT Sales.Customer.CustomerID, Sales.Customer.StoreID, Sales.Customer.TerritoryID, Person.Person.FirstName, Person.Person.MiddleName, Person.Person.LastName, Sales.SalesOrderHeader.SalesOrderID
+FROM ((Sales.Customer
+INNER JOIN Person.Person ON Sales.Customer.PersonID = Person.Person.BusinessEntityID)
+INNER JOIN Sales.SalesOrderHeader ON Sales.Customer.PersonID = Sales.SalesOrderHeader.CustomerID);
+
+3.4.
+SELECT Sales.SalesOrderHeader.SalesOrderID, Sales.SalesPerson.SalesQuota, Sales.SalesPerson.Bonus
+FROM Sales.SalesOrderHeader
+INNER JOIN Sales.SalesPerson ON Sales.SalesPerson.BusinessEntityID = Sales.SalesOrderHeader.SalesPersonID;
+
+
+3.5.
+SELECT Sales.SalesOrderHeader.SalesOrderID, Sales.SalesPerson.SalesQuota, Sales.SalesPerson.Bonus, Person.Person.FirstName, Person.Person.MiddleName, Person.Person.LastName
+FROM ((Sales.SalesOrderHeader
+INNER JOIN Sales.SalesPerson ON Sales.SalesPerson.BusinessEntityID = Sales.SalesOrderHeader.SalesPersonID)
+INNER JOIN Person.Person ON Sales.SalesPerson.BusinessEntityID = Person.Person.BusinessEntityID);
+
+
+3.6.
+SELECT Production.Product.Color, Production.Product.Size, Production.ProductModel.CatalogDescription
+FROM Production.ProductModel
+INNER JOIN Production.Product ON Production.ProductModel.Name =Production.Product.Name;
+
+3.7.
+SELECT Person.Person.FirstName, Person.Person.MiddleName, Person.Person.LastName, Production.Product.Name 
+FROM ((((Person.Person
+INNER JOIN Person.BusinessEntity ON  Person.Person.BusinessEntityID = Person.BusinessEntity.BusinessEntityID)
+INNER JOIN Purchasing.Vendor ON Person.BusinessEntity.BusinessEntityID = Purchasing.Vendor.BusinessEntityID)
+INNER JOIN Purchasing.ProductVendor ON Purchasing.Vendor.BusinessEntityID = Purchasing.ProductVendor.BusinessEntityID)
+INNER JOIN Production.Product ON Purchasing.ProductVendor.ProductID = Production.Product.ProductID);
+
+
+
